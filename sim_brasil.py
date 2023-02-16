@@ -107,8 +107,8 @@ def simulacao_decisivo(nsim):
    
 if __name__ == '__main__':
     from multiprocessing.pool import Pool
-    from multiprocessing import set_start_method
-    set_start_method("spawn")
+    #from multiprocessing import set_start_method
+    #set_start_method("spawn")
 
     url = 'https://docs.google.com/spreadsheets/d/1IyDh4y0ul63reEMASf-kmEgxmOy1tUoM/edit?usp=share_link&ouid=117009962348251314847&rtpof=true&sd=true'
     a = requests.get(url)
