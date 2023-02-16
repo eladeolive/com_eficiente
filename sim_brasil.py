@@ -17,7 +17,7 @@ def simulate_games(team1,team2,ngames=1):
 
     jogos = pl.DataFrame(bivariate_poi(m1,m2,ngames)).transpose().lazy()\
         .groupby(['column_0','column_1']).agg([pl.count()/ngames])\
-        .with_column(pl.when(pl.col("column_0") > pl.col("column_1")).then(team1)\
+        .with_columns(pl.when(pl.col("column_0") > pl.col("column_1")).then(team1)\
                         .when(pl.col("column_0") < pl.col("column_1")).then(team2)\
                          .otherwise('empate'))
 
@@ -116,8 +116,8 @@ if __name__ == '__main__':
     df.columns = df.iloc[0]
 
     df = pl.from_pandas(df.drop(0).drop(1,axis=1))\
-    .with_column((pl.col('Gols_feitos')/pl.col('Jogos')).alias('Gf'))\
-    .with_column((pl.col('Gosl_sofridos')/pl.col('Jogos')).alias('Gs'))
+    .with_columns((pl.col('Gols_feitos')/pl.col('Jogos')).alias('Gf'))\
+    .with_columns((pl.col('Gosl_sofridos')/pl.col('Jogos')).alias('Gs'))
 
     group_g = ['Brazil', 'Serbia', 'Switzerland', 'Cameroon']
 
